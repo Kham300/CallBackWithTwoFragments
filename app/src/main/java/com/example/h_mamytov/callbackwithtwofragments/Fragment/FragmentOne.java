@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.h_mamytov.callbackwithtwofragments.Adapter.AdapterOne;
+import com.example.h_mamytov.callbackwithtwofragments.MainActivity;
 import com.example.h_mamytov.callbackwithtwofragments.R;
 
 public class FragmentOne extends Fragment implements AdapterOne.ChangeFragmentTwoBackgroundCallback {
@@ -45,29 +46,12 @@ public class FragmentOne extends Fragment implements AdapterOne.ChangeFragmentTw
         return view;
     }
 
-    @Override
-    public void onAttach(Context context){
-        super.onAttach(context);
-        if (context instanceof AskActivityToChangeFragmentTwoBackGroundCallBack){
-            callBackToActivity = (AskActivityToChangeFragmentTwoBackGroundCallBack) context;
-        } else {
-            throw new RuntimeException(context.toString()+
-            "must implement AskActivityToChangeFragmentTwoBackGroundCallBack");
-        }
-    }
-
-    @Override
-    public void onDetach(){
-        super.onDetach();
-        callBackToActivity = null;
-    }
-
     public static ImageView getImageView() {
         return imageView;
     }
 
     public void changeBackground(){
-        adapterOne.changeBackGround();
+        callBackToActivity.changeBackGroundFromActivityToFragmentTwo();
     }
 
     @Override
